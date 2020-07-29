@@ -25,7 +25,7 @@ namespace SFWR::Sytem
 	}
 
 	WinBaseApp::WinBaseApp(HINSTANCE instance, std::string_view utf8CmdLine, std::uint32_t width, std::uint32_t height) :
-		viewPort(nullptr),
+		m_viewPort(nullptr),
 		m_isExit(false)
 	{
 		constexpr const  wchar_t* wndClsName = L"SFWR.window";
@@ -38,7 +38,8 @@ namespace SFWR::Sytem
 		wndclass.lpfnWndProc = windowProc;
 		wndclass.lpszClassName = wndClsName;
 		wndclass.hInstance = instance;
-		wndclass.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
+		wndclass.hbrBackground = static_cast<HBRUSH>( ::GetStockObject(BLACK_BRUSH) );
+		wndclass.hCursor = static_cast<HCURSOR>( ::LoadCursor(0, IDC_ARROW) );
 		wndclass.hIcon = 0;
 		wndclass.hIconSm = 0;
 		wndclass.lpszMenuName = nullptr;
@@ -47,16 +48,17 @@ namespace SFWR::Sytem
 
 		::RegisterClassEx(&wndclass);
 
-		::RECT windowsRect{ 0L, 0L, static_cast<LONG>(width), static_cast<LONG>(height) };
-		::AdjustWindowRect( &windowsRect, WS_POPUPWINDOW | WS_CAPTION | WS_MINIMIZEBOX, false );
+		::RECT viewportRect{ 0L, 0L, static_cast<LONG>(width), static_cast<LONG>(height) };
+		::RECT windowsRect{ viewportRect };
+		::AdjustWindowRect( &windowsRect, WS_OVERLAPPEDWINDOW, false );
 
 		m_hwnd = ::CreateWindowEx(
 			0,
 			wndClsName,
 			L"SFWR::Window",
-			WS_POPUPWINDOW | WS_CAPTION | WS_MINIMIZEBOX,
+			WS_OVERLAPPEDWINDOW,
 			10, 10,
-			windowsRect.right - windowsRect.left + 1, windowsRect.bottom - windowsRect.top + 1,
+			windowsRect.right - windowsRect.left, windowsRect.bottom - windowsRect.top,
 			nullptr,
 			nullptr,
 			instance,
@@ -68,7 +70,7 @@ namespace SFWR::Sytem
 			::UnregisterClass( wndClsName, instance );
 		}
 
-		viewPort = std::make_unique<ViewPort>(m_hwnd, windowsRect);
+		m_viewPort = std::make_unique<ViewPort>(m_hwnd, viewportRect);
 	}
 
 	LRESULT WinBaseApp::handleMessage(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
@@ -93,7 +95,9 @@ namespace SFWR::Sytem
 
 		MSG msg = {};
 
-		const float deltaTms = 0.016f;
+		constexpr SFWR::Sytem::Utils::FloatSeconds delta{0.016};
+		std::uint64_t time;
+		char message[255] = {0};
 
 		while (!isExit())
 		{
@@ -104,8 +108,14 @@ namespace SFWR::Sytem
 			}
 			else
 			{
-				update(deltaTms);
-				render();
+				{
+					SFWR::Sytem::Utils::ScopedTimer t{ time };
+					update(delta);
+					render();
+				}
+				float msTime = time / 1000000.f;
+				snprintf(message, 255, "update + render: %.4f\n", msTime);
+				OutputDebugStringA(message);
 			}
 		}
 

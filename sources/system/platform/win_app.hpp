@@ -2,10 +2,11 @@
 #include <Windows.h>
 #include <memory>
 #include <string_view>
-
+#include <chrono>
 
 #include "../base/base_app.hpp"
 #include "../platform/view_port.hpp"
+#include "../time_utils.hpp"
 
 namespace SFWR::Sytem
 {
@@ -18,13 +19,15 @@ namespace SFWR::Sytem
 		bool isExit() const { return m_isExit; };
 
 		int run() override;
-		virtual void update(float deltaTs) = 0;
+		virtual void update( Utils::FloatSeconds delta ) = 0;
 		virtual void render() = 0;
 
 	private:
 		HWND m_hwnd;
-		std::unique_ptr<ViewPort> viewPort;
 		bool m_isExit;
+
+	protected:
+		std::unique_ptr<ViewPort> m_viewPort;
 	};
 
 } //SFWR::Sytem

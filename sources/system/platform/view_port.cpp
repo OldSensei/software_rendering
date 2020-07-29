@@ -6,8 +6,8 @@ namespace SFWR::Sytem
 	ViewPort::ViewPort(HWND hwnd, const RECT& wndRect) :
 		m_hwnd(hwnd),
 		m_hdc(::GetDC(hwnd)),
-		m_width(wndRect.right - wndRect.left + 1),
-		m_height(wndRect.bottom - wndRect.top + 1)
+		m_width(wndRect.right - wndRect.left),
+		m_height(wndRect.bottom - wndRect.top)
 	{
 		if (!m_hdc)
 		{

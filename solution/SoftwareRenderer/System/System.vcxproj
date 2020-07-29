@@ -23,11 +23,13 @@
     <ClInclude Include="..\..\..\sources\system\platform\auxiliary\string_conversion.hpp" />
     <ClInclude Include="..\..\..\sources\system\platform\view_port.hpp" />
     <ClInclude Include="..\..\..\sources\system\platform\win_app.hpp" />
+    <ClInclude Include="..\..\..\sources\system\time_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\system\platform\auxiliary\string_conversion.cpp" />
     <ClCompile Include="..\..\..\sources\system\platform\view_port.cpp" />
     <ClCompile Include="..\..\..\sources\system\platform\win_app.cpp" />
+    <ClCompile Include="..\..\..\sources\system\time_utils.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
