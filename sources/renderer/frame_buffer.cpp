@@ -4,8 +4,10 @@
 namespace SFWR::Renderer
 {
 	FrameBuffer::FrameBuffer(std::uint32_t width, std::uint32_t height, std::uint32_t bitsPerPixel) : 
-		m_rowSize{ width * bitsPerPixel },
-		m_pixelDepth{ bitsPerPixel },
+		m_width{ width },
+		m_height{ height },
+		m_rowSize{ width * (bitsPerPixel / 8) },
+		m_pixelDepth{ bitsPerPixel / 8 },
 		m_sizeInBytes{ width * static_cast<std::uint64_t>(height) * static_cast<std::uint64_t>(bitsPerPixel / 8) },
 		m_buffer{ std::make_unique<std::byte[]>(m_sizeInBytes) }
 	{
