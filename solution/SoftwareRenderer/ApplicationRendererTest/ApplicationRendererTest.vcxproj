@@ -160,10 +160,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\applications\renderer_test\main.cpp" />
-    <ClCompile Include="..\..\..\sources\applications\renderer_test\test_app.cpp" />
+    <ClCompile Include="..\..\..\sources\applications\renderer_test\starfield_app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sources\applications\renderer_test\test_app.hpp" />
+    <ClInclude Include="..\..\..\sources\applications\renderer_test\starfield_app.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

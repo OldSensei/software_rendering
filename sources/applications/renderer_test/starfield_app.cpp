@@ -1,4 +1,4 @@
-#include "test_app.hpp"
+#include "starfield_app.hpp"
 
 #include <vector>
 #include <random>
@@ -38,7 +38,7 @@ namespace
 
 		void update(float time, SFWR::Renderer::FrameBuffer& fb)
 		{
-			static float tanHalfFOV = tanf( 140 / 2 * M_PI  / 180.0f );
+			static float tanHalfFOV = tanf( 140 / 2.f * static_cast<float>(M_PI) / 180.0f );
 
 			std::int32_t halfWidth = fb.getWidth() / 2;
 			std::int32_t halfHeight = fb.getHeight() / 2;
@@ -78,7 +78,7 @@ namespace
 
 }
 
-void TestApp::update(SFWR::Sytem::Utils::FloatSeconds delta)
+void StarFieldApp::update(SFWR::Sytem::Utils::FloatSeconds delta)
 {
 	static StarField starField{ 4096, 64.f, 20.f };
 	m_fb.clear(0, 0, 0);
@@ -86,7 +86,7 @@ void TestApp::update(SFWR::Sytem::Utils::FloatSeconds delta)
 	starField.update(delta.count(), m_fb);
 }
 
-void TestApp::render()
+void StarFieldApp::render()
 {
 	m_viewPort->present(m_fb.getBuffer());
 }
