@@ -4,13 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Renderer", "Renderer\Renderer.vcxproj", "{BEA7B29E-EDEF-4946-AEB1-F5A55EC25A0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F} = {BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F}
+		{D47D769A-E70A-4A00-B37C-79228140E4F2} = {D47D769A-E70A-4A00-B37C-79228140E4F2}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ApplicationRendererTest", "ApplicationRendererTest\ApplicationRendererTest.vcxproj", "{06D6BCBF-119F-42A2-93E7-1EB867618490}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F} = {BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F}
+		{D47D769A-E70A-4A00-B37C-79228140E4F2} = {D47D769A-E70A-4A00-B37C-79228140E4F2}
+		{BEA7B29E-EDEF-4946-AEB1-F5A55EC25A0B} = {BEA7B29E-EDEF-4946-AEB1-F5A55EC25A0B}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "System", "System\System.vcxproj", "{BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Math\Math.vcxproj", "{D47D769A-E70A-4A00-B37C-79228140E4F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +52,14 @@ Global
 		{BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F}.Release|x64.Build.0 = Debug|x64
 		{BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F}.Release|x86.ActiveCfg = Debug|x64
 		{BD3B6A54-EB4A-4B04-BE68-94A52CCFE46F}.Release|x86.Build.0 = Debug|x64
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Debug|x64.ActiveCfg = Debug|x64
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Debug|x64.Build.0 = Debug|x64
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Debug|x86.ActiveCfg = Debug|Win32
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Debug|x86.Build.0 = Debug|Win32
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Release|x64.ActiveCfg = Release|x64
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Release|x64.Build.0 = Release|x64
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Release|x86.ActiveCfg = Release|Win32
+		{D47D769A-E70A-4A00-B37C-79228140E4F2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

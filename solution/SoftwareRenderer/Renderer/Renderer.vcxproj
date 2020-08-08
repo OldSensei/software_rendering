@@ -148,9 +148,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\sources\renderer\frame_buffer.hpp" />
+    <ClInclude Include="..\..\..\sources\renderer\render_context.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\renderer\frame_buffer.cpp" />
+    <ClCompile Include="..\..\..\sources\renderer\render_context.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,7 +3,7 @@
 #include "../../system/platform/win_app.hpp"
 #include "../../renderer/frame_buffer.hpp"
 
-class StarFieldApp : public SFWR::Sytem::WinBaseApp
+class StarFieldApp : public SFWR::System::WinBaseApp
 {
 public:
 	StarFieldApp(HINSTANCE instance, std::string_view utf8CmdLine, std::uint32_t width, std::uint32_t height) :
@@ -13,7 +13,7 @@ public:
 		m_fb{ width, height, 32 }
 	{};
 
-	void update(SFWR::Sytem::Utils::FloatSeconds delta) override;
+	void update(SFWR::System::Utils::FloatSeconds delta) override;
 	void render() override;
 
 private:

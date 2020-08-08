@@ -1,7 +1,7 @@
 #include <cassert>
 #include "view_port.hpp"
 
-namespace SFWR::Sytem
+namespace SFWR::System
 {
 	ViewPort::ViewPort(HWND hwnd, const RECT& wndRect) :
 		m_hwnd(hwnd),

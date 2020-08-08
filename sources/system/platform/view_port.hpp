@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string_view>
 
-namespace SFWR::Sytem
+namespace SFWR::System
 {
 	class ViewPort final
 	{

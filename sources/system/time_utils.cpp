@@ -1,6 +1,6 @@
 #include "time_utils.hpp"
 
-namespace SFWR::Sytem::Utils
+namespace SFWR::System::Utils
 {
 	ScopedTimer::ScopedTimer(std::uint64_t& timeStore) noexcept :
 		m_timeStorage{ timeStore },

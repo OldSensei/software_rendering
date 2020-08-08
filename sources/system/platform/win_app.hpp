@@ -8,7 +8,7 @@
 #include "../platform/view_port.hpp"
 #include "../time_utils.hpp"
 
-namespace SFWR::Sytem
+namespace SFWR::System
 {
 	class WinBaseApp : public IBaseApp
 	{

@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <chrono>
 
-namespace SFWR::Sytem::Utils
+namespace SFWR::System::Utils
 {
 	using FloatSeconds = std::chrono::duration<float>;
 

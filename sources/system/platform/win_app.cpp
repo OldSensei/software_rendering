@@ -1,6 +1,6 @@
 #include "win_app.hpp"
 
-namespace SFWR::Sytem
+namespace SFWR::System
 {
 	namespace
 	{
@@ -95,7 +95,7 @@ namespace SFWR::Sytem
 
 		MSG msg = {};
 
-		constexpr SFWR::Sytem::Utils::FloatSeconds delta{0.016};
+		constexpr SFWR::System::Utils::FloatSeconds delta{0.016};
 		std::uint64_t time;
 		char message[255] = {0};
 
@@ -109,7 +109,7 @@ namespace SFWR::Sytem
 			else
 			{
 				{
-					SFWR::Sytem::Utils::ScopedTimer t{ time };
+					SFWR::System::Utils::ScopedTimer t{ time };
 					update(delta);
 					render();
 				}

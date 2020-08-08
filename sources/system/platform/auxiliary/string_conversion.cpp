@@ -4,7 +4,7 @@
 
 #include "string_conversion.hpp"
 
-namespace SFWR::Sytem::Utils
+namespace SFWR::System::Utils
 {
 	std::string to_utf8(const wchar_t* const source)
 	{
@@ -29,7 +29,7 @@ namespace SFWR::Sytem::Utils
 
 	std::string to_utf8(const wchar_t* const source, size_t size)
 	{
-		int requestedSize = WideCharToMultiByte(CP_UTF8, 0, source, size, nullptr, 0, nullptr, nullptr);
+		int requestedSize = WideCharToMultiByte(CP_UTF8, 0, source, static_cast<int>(size), nullptr, 0, nullptr, nullptr);
 
 		if (requestedSize == 0)
 		{
@@ -38,7 +38,7 @@ namespace SFWR::Sytem::Utils
 
 		std::string convertedString(static_cast<size_t>(requestedSize) + 1, 0);
 
-		int result = WideCharToMultiByte(CP_UTF8, 0, source, size, convertedString.data(), requestedSize, nullptr, nullptr);
+		int result = WideCharToMultiByte(CP_UTF8, 0, source, static_cast<int>(size), convertedString.data(), requestedSize, nullptr, nullptr);
 
 		if (requestedSize == 0)
 		{

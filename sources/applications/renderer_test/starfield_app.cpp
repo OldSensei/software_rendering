@@ -78,7 +78,7 @@ namespace
 
 }
 
-void StarFieldApp::update(SFWR::Sytem::Utils::FloatSeconds delta)
+void StarFieldApp::update(SFWR::System::Utils::FloatSeconds delta)
 {
 	static StarField starField{ 4096, 64.f, 20.f };
 	m_fb.clear(0, 0, 0);

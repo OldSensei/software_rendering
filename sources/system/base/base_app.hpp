@@ -1,6 +1,6 @@
 #pragma once
 
-namespace SFWR::Sytem
+namespace SFWR::System
 {
 	class IBaseApp
 	{
