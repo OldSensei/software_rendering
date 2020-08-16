@@ -22,13 +22,20 @@ namespace SFWR::Renderer
 		void fillTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY);
 
 	private:
-		void fillScanBuffer(std::uint32_t y, std::uint32_t xMin, std::uint32_t xMax);
-		void fillSolidShape(std::uint32_t yMin, std::uint32_t yMax);
-		void scanConvertTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY, Handedness handedness);
+		struct Edge
+		{
+			Edge(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b);
 
-		void scanConvertLine( const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, Handedness handedness);
+			float step;
+			float curX;
+			std::uint32_t yStart;
+			std::uint32_t yEnd;
+			bool isValide;
+		};
 
 	private:
-		std::vector< std::pair< std::uint32_t, std::uint32_t > > m_scanBuffer;
+		void scanTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY, Handedness handedness);
+		void scanTrianglePart(Edge& bottomToTop, Edge& mid, Handedness handedness);
+		void drawScanLine(const Edge& left, const Edge& right, std::uint32_t y);
 	};
 }  // namespace SFWR::Renderer

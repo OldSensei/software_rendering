@@ -6,8 +6,8 @@ namespace SFWR::Math
 	struct Vector2
 	{
 		Vector2(const Vertex& v0, const Vertex& v1) :
-			x{ v1.x - v0.x },
-			y{ v1.y - v0.y }
+			x{ v1.m_pos.m_x - v0.m_pos.m_x },
+			y{ v1.m_pos.m_y - v0.m_pos.m_y }
 		{}
 
 		float x;
