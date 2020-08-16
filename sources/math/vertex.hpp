@@ -9,7 +9,7 @@ namespace SFWR::Math
 {
 	struct Vertex
 	{
-		Vertex(float x, float y, float z = 0.f, float w = 1.0f) :
+		Vertex(float x = 0.f, float y = 0.f, float z = 0.f, float w = 1.0f) :
 			m_pos{ x, y, z, w }
 		{};
 

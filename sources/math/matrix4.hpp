@@ -1,5 +1,8 @@
 #pragma once
 #include <algorithm>
+#include <cmath>
+
+#include "angles.hpp"
 #include "vector4.hpp"
 
 namespace SFWR::Math
@@ -106,4 +109,44 @@ namespace SFWR::Math
 
 		return r;
 	}
+
+	inline Matrix4 initRotationAroundXTransform( float degrees )
+	{
+		Matrix4 r;
+		float rad = toRad(degrees);
+
+		r.m[0][0] = 1;	r.m[0][1] = 0;			r.m[0][2] = 0;			r.m[0][3] = 0;
+		r.m[1][0] = 0;	r.m[1][1] = cosf(rad);	r.m[1][2] = sinf(rad);	r.m[1][3] = 0;
+		r.m[2][0] = 0;	r.m[2][1] = -sinf(rad);	r.m[2][2] = cosf(rad);	r.m[2][3] = 0;
+		r.m[3][0] = 0;	r.m[3][1] = 0;			r.m[3][2] = 0;			r.m[3][3] = 1;
+
+		return r;
+	}
+
+	inline Matrix4 initRotationAroundYTransform( float degrees )
+	{
+		Matrix4 r;
+		float rad = toRad(degrees);
+
+		r.m[0][0] = cosf(rad);	r.m[0][1] = 0;			r.m[0][2] = -sinf(rad);	r.m[0][3] = 0;
+		r.m[1][0] = 0;			r.m[1][1] = 1;			r.m[1][2] = 0;			r.m[1][3] = 0;
+		r.m[2][0] = sinf(rad);	r.m[2][1] = 0;			r.m[2][2] = cosf(rad);	r.m[2][3] = 0;
+		r.m[3][0] = 0;			r.m[3][1] = 0;			r.m[3][2] = 0;			r.m[3][3] = 1;
+
+		return r;
+	}
+
+	inline Matrix4 initRotationAroundZTransform(float degrees)
+	{
+		Matrix4 r;
+		float rad = toRad(degrees);
+
+		r.m[0][0] = cosf(rad);	r.m[0][1] = sinf(rad);	r.m[0][2] = 0;	r.m[0][3] = 0;
+		r.m[1][0] = -sinf(rad);	r.m[1][1] = cosf(rad);	r.m[1][2] = 0;	r.m[1][3] = 0;
+		r.m[2][0] = 0;			r.m[2][1] = 0;			r.m[2][2] = 1;	r.m[2][3] = 0;
+		r.m[3][0] = 0;			r.m[3][1] = 0;			r.m[3][2] = 0;	r.m[3][3] = 1;
+
+		return r;
+	}
+
 }
