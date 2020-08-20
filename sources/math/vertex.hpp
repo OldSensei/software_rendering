@@ -9,14 +9,17 @@ namespace SFWR::Math
 {
 	struct Vertex
 	{
-		Vertex(float x = 0.f, float y = 0.f, float z = 0.f, float w = 1.0f) :
-			m_pos{ x, y, z, w }
+		Vertex(float x = 0.f, float y = 0.f, float z = 0.f, float w = 1.0f,
+				float r = 0.f, float g = 0.f, float b = 0.f) :
+			m_pos{ x, y, z, w },
+			m_colour{ r, g, b, 0.f}
 		{};
 
 		SFWR::Math::Vertex& transform(const SFWR::Math::Matrix4& t);
 		SFWR::Math::Vertex& transform(float scalar);
 
 		Vector4 m_pos;
+		Vector4 m_colour;
 	};
 
 	inline SFWR::Math::Vertex& Vertex::transform(const SFWR::Math::Matrix4& t)

@@ -30,6 +30,7 @@ namespace SFWR::Math
 	inline Matrix4& Matrix4::setTranslation(const SFWR::Math::Vector4& translation)
 	{
 		m[3][0] = translation.m_x; m[3][1] = translation.m_y; m[3][2] = translation.m_z; m[3][3] = translation.m_w;
+		return *this;
 	}
 
 	inline Matrix4& Matrix4::transpose()
@@ -149,4 +150,20 @@ namespace SFWR::Math
 		return r;
 	}
 
+	inline Matrix4 initPerspectiveProjectionMatrix(float fovDegrees, float aspect, float n, float f)
+	{
+		// Left-handed system
+		Matrix4 r;
+		float halfFOV = fovDegrees / 2.0f;
+		float rad = toRad(halfFOV);
+
+		float h = 1.0f / tanf( rad );
+
+		r.m[0][0] = h / aspect;	r.m[0][1] = 0;	r.m[0][2] = 0;					r.m[0][3] = 0.f;
+		r.m[1][0] = 0;			r.m[1][1] = h;	r.m[1][2] = 0;					r.m[1][3] = 0.f;
+		r.m[2][0] = 0;			r.m[2][1] = 0;	r.m[2][2] = f / (f - n);		r.m[2][3] = 1.f;
+		r.m[3][0] = 0;			r.m[3][1] = 0;	r.m[3][2] = -n * f / (f - n);	r.m[3][3] = 0.f;
+
+		return r;
+	}
 }

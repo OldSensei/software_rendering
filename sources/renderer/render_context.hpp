@@ -22,15 +22,24 @@ namespace SFWR::Renderer
 		void fillTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY);
 
 	private:
+		struct Gradient
+		{
+			Gradient(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const SFWR::Math::Vertex& c, Handedness handedness);
+
+			SFWR::Math::Vector4 stepX;
+			SFWR::Math::Vector4 stepY;
+		};
+
 		struct Edge
 		{
-			Edge(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b);
+			Edge(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const Gradient& g);
 
 			float step;
 			float curX;
 			std::uint32_t yStart;
 			std::uint32_t yEnd;
-			bool isValide;
+			SFWR::Math::Vector4 curColour;
+			SFWR::Math::Vector4 colourStep;
 		};
 
 	private:
