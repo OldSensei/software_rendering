@@ -41,5 +41,6 @@ namespace SFWR::Math
 	inline void swap( SFWR::Math::Vertex& a, SFWR::Math::Vertex& b )
 	{
 		std::swap(a.m_pos, b.m_pos);
+		std::swap(a.m_colour, b.m_colour);
 	}
 } // namespace SFWR::Renderer

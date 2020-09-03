@@ -8,34 +8,21 @@
 
 #include "render_context.hpp"
 
-#include <Windows.h>
 namespace  SFWR::Renderer
 {
-	RenderContext::Gradient::Gradient(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const SFWR::Math::Vertex& c, Handedness handedness) :
+	RenderContext::Gradient::Gradient(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const SFWR::Math::Vertex& c) :
 		stepX{ 0.f, 0.f, 0.f, 0.f },
 		stepY{ 0.f, 0.f, 0.f, 0.f }
 	{
 		using SFWR::Math::Vector4;
-		//if (handedness == Handedness::CounterClockwise)
-		//{
-			float	dx	= (b.m_pos.m_x - c.m_pos.m_x) * (a.m_pos.m_y - c.m_pos.m_y) + (c.m_pos.m_x - a.m_pos.m_x) * (b.m_pos.m_y - c.m_pos.m_y);
-			Vector4	dcx = (b.m_colour - c.m_colour) * (a.m_pos.m_y - c.m_pos.m_y) + (c.m_colour - a.m_colour) * (b.m_pos.m_y - c.m_pos.m_y);
-			stepX = dcx * (1.f / dx);
 
-			float	dy = -dx;
-			Vector4	dcy = (b.m_colour - c.m_colour) * (a.m_pos.m_x - c.m_pos.m_x) + (c.m_colour - a.m_colour) * (b.m_pos.m_x - c.m_pos.m_x);
-			stepY = dcy * (1.f / dy);
-		//}
-		//else
-		//{
-		//	float dx	= (c.m_pos.m_x - a.m_pos.m_x) * (a.m_pos.m_y - b.m_pos.m_y) + (a.m_pos.m_x - b.m_pos.m_x) * (a.m_pos.m_y - c.m_pos.m_y);
-		//	Vector4 dcx = (c.m_colour - a.m_colour) * (a.m_pos.m_y - b.m_pos.m_y) + (a.m_colour - b.m_colour) * (a.m_pos.m_y - c.m_pos.m_y);
-		//	stepX = dcx * (1.f / dx);
-		//
-		//	float	dy = -dx;
-		//	Vector4	dcy = (c.m_colour - a.m_colour) * (a.m_pos.m_x - b.m_pos.m_x) + (a.m_colour - b.m_colour) * (a.m_pos.m_x - c.m_pos.m_x);
-		//	stepY = dcy * (1.f / dy);
-		//}
+		float	dx	= (b.m_pos.m_x - c.m_pos.m_x) * (a.m_pos.m_y - c.m_pos.m_y) + (c.m_pos.m_x - a.m_pos.m_x) * (b.m_pos.m_y - c.m_pos.m_y);
+		Vector4	dcx = (b.m_colour - c.m_colour) * (a.m_pos.m_y - c.m_pos.m_y) + (c.m_colour - a.m_colour) * (b.m_pos.m_y - c.m_pos.m_y);
+		stepX = dcx * (1.f / dx);
+
+		float	dy = -dx;
+		Vector4	dcy = (b.m_colour - c.m_colour) * (a.m_pos.m_x - c.m_pos.m_x) + (c.m_colour - a.m_colour) * (b.m_pos.m_x - c.m_pos.m_x);
+		stepY = dcy * (1.f / dy);
 	}
 
 	RenderContext::Edge::Edge(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const RenderContext::Gradient& g) :
@@ -78,9 +65,9 @@ namespace  SFWR::Renderer
 		midY.transform(m).transform(1.0f / midY.m_pos.m_w);
 		maxY.transform(m).transform(1.0f / maxY.m_pos.m_w);
 
-		if (maxY.m_pos.m_y < minY.m_pos.m_y)
+		if (maxY.m_pos.m_y < midY.m_pos.m_y)
 		{
-			SFWR::Math::swap(maxY, minY);
+			SFWR::Math::swap(maxY, midY);
 		}
 
 		if (midY.m_pos.m_y < minY.m_pos.m_y)
@@ -101,7 +88,7 @@ namespace  SFWR::Renderer
 
 	void RenderContext::scanTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY, Handedness handedness)
 	{
-		Gradient g{ minY, midY, maxY, handedness };
+		Gradient g{ minY, midY, maxY };
 
 		Edge bottomToTop{ minY, maxY, g };
 		Edge bottomToMid{ minY, midY, g };
@@ -146,7 +133,6 @@ namespace  SFWR::Renderer
 			auto b = static_cast<std::uint32_t>(result.b * 255.f);
 			putPixel(x, y, r, g, b);
 
-			//putPixel(x, y, 0xff, 0xff, 0xff);
 			weight += step;
 		}
 	}

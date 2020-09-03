@@ -105,7 +105,7 @@ namespace SFWR::Math
 
 		r.m[0][0] = halfWidth;		r.m[0][1] = 0.0f;			r.m[0][2] = 0.0f;	r.m[0][3] = 0.0f;
 		r.m[1][0] = 0.0f;			r.m[1][1] = halfHeight;		r.m[1][2] = 0.0f;	r.m[1][3] = 0.0f;
-		r.m[2][0] = 0.0f;			r.m[2][1] = 1.0f;			r.m[2][2] = 1.0f;	r.m[2][3] = 0.0f;
+		r.m[2][0] = 0.0f;			r.m[2][1] = 0.0f;			r.m[2][2] = 1.0f;	r.m[2][3] = 0.0f;
 		r.m[3][0] = halfWidth;		r.m[3][1] = halfHeight;		r.m[3][2] = 0.0f;	r.m[3][3] = 1.0f;
 
 		return r;
@@ -146,6 +146,14 @@ namespace SFWR::Math
 		r.m[1][0] = -sinf(rad);	r.m[1][1] = cosf(rad);	r.m[1][2] = 0;	r.m[1][3] = 0;
 		r.m[2][0] = 0;			r.m[2][1] = 0;			r.m[2][2] = 1;	r.m[2][3] = 0;
 		r.m[3][0] = 0;			r.m[3][1] = 0;			r.m[3][2] = 0;	r.m[3][3] = 1;
+
+		return r;
+	}
+
+	inline Matrix4 initTranslationMatrix(float x, float y, float z)
+	{
+		Matrix4 r = initIdentityMatrix();
+		r.m[3][0] = x; r.m[3][1] = y; r.m[3][2] = z;
 
 		return r;
 	}

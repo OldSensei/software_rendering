@@ -24,7 +24,7 @@ namespace SFWR::Renderer
 	private:
 		struct Gradient
 		{
-			Gradient(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const SFWR::Math::Vertex& c, Handedness handedness);
+			Gradient(const SFWR::Math::Vertex& a, const SFWR::Math::Vertex& b, const SFWR::Math::Vertex& c);
 
 			SFWR::Math::Vector4 stepX;
 			SFWR::Math::Vector4 stepY;

@@ -31,9 +31,9 @@ void SolidShapeApp::update( SFWR::System::Utils::FloatSeconds delta)
 
 	std::uint64_t deltaT = newTime - oldTime;
 
-	auto transformation = SFWR::Math::initRotationAroundYTransform(0);//deltaT * 360.0f / 2500.0f );
-	transformation.setTranslation({0.0f, 0.0f, 3.f});
-	transformation = transformation * perspectiveProjection;
+	auto transformation =	SFWR::Math::initRotationAroundYTransform(deltaT * 360.0f / 2500.0f ) * 
+							SFWR::Math::initTranslationMatrix(0.0f, 0.0f, 3.f) *
+							perspectiveProjection;
 
 	aWorld = aLocal;
 	bWorld = bLocal;
@@ -48,13 +48,6 @@ void SolidShapeApp::render()
 {
 	static char message[255] = { 0 };
 	m_rc.clear(0, 0, 0);
-
-	snprintf(message, 255, "A(x:%.4f y:%.4f z:%.4f ) Color(R:%.4f G:%.4f B:%.4f)\n", aWorld.m_pos.m_x, aWorld.m_pos.m_y, aWorld.m_pos.m_z, aWorld.m_colour.m_x, aWorld.m_colour.m_y, aWorld.m_colour.m_z);
-	OutputDebugStringA(message);
-	snprintf(message, 255, "B(x:%.4f y:%.4f z:%.4f ) Color(R:%.4f G:%.4f B:%.4f)\n", bWorld.m_pos.m_x, bWorld.m_pos.m_y, bWorld.m_pos.m_z, bWorld.m_colour.m_x, bWorld.m_colour.m_y, bWorld.m_colour.m_z);
-	OutputDebugStringA(message);
-	snprintf(message, 255, "C(x:%.4f y:%.4f z:%.4f ) Color(R:%.4f G:%.4f B:%.4f)\n", cWorld.m_pos.m_x, cWorld.m_pos.m_y, cWorld.m_pos.m_z, cWorld.m_colour.m_x, cWorld.m_colour.m_y, cWorld.m_colour.m_z);
-	OutputDebugStringA(message);
 
 	m_rc.fillTriangle(aWorld, bWorld, cWorld);
 	m_viewPort->present( m_rc.getBuffer() );
