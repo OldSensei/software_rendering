@@ -98,6 +98,7 @@ namespace SFWR::Math
 
 	inline Matrix4 initToScreenSpaceTransform( std::uint32_t width, std::uint32_t height)
 	{
+		// Origin point is left bottom corner
 		Matrix4 r;
 
 		float halfWidth = width / 2.0f;

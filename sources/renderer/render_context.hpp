@@ -42,6 +42,18 @@ namespace SFWR::Renderer
 			SFWR::Math::Vector4 colourStep;
 		};
 
+		constexpr auto getLeftRightEdges(SFWR::Renderer::RenderContext::Edge& bottomToTop, SFWR::Renderer::RenderContext::Edge& mid, SFWR::Renderer::RenderContext::Handedness handedness) noexcept
+		{
+			if (handedness == SFWR::Renderer::RenderContext::Handedness::Clockwise)
+			{
+				return std::tie(bottomToTop, mid);
+			}
+			else
+			{
+				return std::tie(mid, bottomToTop);
+			}
+		}
+
 	private:
 		void scanTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY, Handedness handedness);
 		void scanTrianglePart(Edge& bottomToTop, Edge& mid, Handedness handedness);

@@ -100,8 +100,7 @@ namespace  SFWR::Renderer
 
 	void RenderContext::scanTrianglePart( Edge& bottomToTop, Edge& mid, Handedness handedness)
 	{
-		Edge& left = handedness == Handedness::Clockwise ? bottomToTop : mid;
-		Edge& right = handedness == Handedness::Clockwise ? mid : bottomToTop;
+		auto [left, right] = getLeftRightEdges(bottomToTop, mid, handedness);
 
 		for (auto y = mid.yStart; y < mid.yEnd; ++y)
 		{
@@ -128,9 +127,8 @@ namespace  SFWR::Renderer
 		for (auto& x = xStart; x < xEnd; ++x)
 		{
 			auto result = SFWR::Math::lepr(SFWR::Math::Colour(colourStart), SFWR::Math::Colour(colourEnd), weight);
-			auto r = static_cast<std::uint32_t>(result.r * 255.f);
-			auto g = static_cast<std::uint32_t>(result.g * 255.f);
-			auto b = static_cast<std::uint32_t>(result.b * 255.f);
+			auto&& [r, g, b, a] = SFWR::Math::normalizedToUint32(result);
+
 			putPixel(x, y, r, g, b);
 
 			weight += step;
