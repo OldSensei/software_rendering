@@ -1,6 +1,7 @@
 #include <chrono>
 
 #include "../../math/vertex.hpp"
+#include "../../renderer/bmp_loader.hpp"
 
 #include "solid_shape_app.hpp"
 
@@ -46,9 +47,7 @@ void SolidShapeApp::update( SFWR::System::Utils::FloatSeconds delta)
 
 void SolidShapeApp::render()
 {
-	static char message[255] = { 0 };
 	m_rc.clear(0, 0, 0);
-
 	m_rc.fillTriangle(aWorld, bWorld, cWorld);
 	m_viewPort->present( m_rc.getBuffer() );
 }

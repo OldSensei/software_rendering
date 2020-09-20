@@ -147,10 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\renderer\bmp_loader.hpp" />
     <ClInclude Include="..\..\..\sources\renderer\frame_buffer.hpp" />
     <ClInclude Include="..\..\..\sources\renderer\render_context.hpp" />
+    <ClInclude Include="..\..\..\sources\renderer\texture_data.hpp" />
+    <ClInclude Include="..\..\..\sources\renderer\texture_loader.hpp" />
+    <ClInclude Include="..\..\..\sources\renderer\texture_manager.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\renderer\bmp_loader.cpp" />
     <ClCompile Include="..\..\..\sources\renderer\frame_buffer.cpp" />
     <ClCompile Include="..\..\..\sources\renderer\render_context.cpp" />
   </ItemGroup>

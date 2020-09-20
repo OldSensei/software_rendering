@@ -86,6 +86,20 @@ namespace  SFWR::Renderer
 		scanTriangle(minY, midY, maxY, handedness);
 	}
 
+	void RenderContext::drawTexture(const std::unique_ptr<ITextureData>& texture)
+	{
+		auto textureInfo = texture->getInfo();
+		for (std::uint32_t row = 0; row < textureInfo.height; ++row)
+		{
+			for (std::uint32_t column = 0; column < textureInfo.width; ++column)
+			{
+				auto color = texture->getColor(column, row);
+				putPixel(column, row, static_cast<std::uint32_t>(color.r), static_cast<std::uint32_t>(color.g), static_cast<std::uint32_t>(color.b));
+			}
+		}
+		
+	}
+
 	void RenderContext::scanTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY, Handedness handedness)
 	{
 		Gradient g{ minY, midY, maxY };

@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "../math/vertex.hpp"
+#include "texture_data.hpp"
 
 #include "frame_buffer.hpp"
 
@@ -20,6 +21,7 @@ namespace SFWR::Renderer
 	public:
 		RenderContext(std::uint32_t width, std::uint32_t height, std::uint32_t bitsPerPixel);
 		void fillTriangle(const SFWR::Math::Vertex& minY, const SFWR::Math::Vertex& midY, const SFWR::Math::Vertex& maxY);
+		void drawTexture(const std::unique_ptr<ITextureData>& texture);
 
 	private:
 		struct Gradient
